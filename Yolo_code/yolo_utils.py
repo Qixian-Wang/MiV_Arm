@@ -36,11 +36,11 @@ def check_label_name(img_path, label_path):
     label_path = Path(label_path)
 
     error_flag = False
-    for img in img_path.glob("*.jpeg" or "*.jpg" or "*.png"):
+    for img in img_path.glob("*.jpg"):
         name = os.path.basename(img)
-        label_name = name.replace(".jpeg", ".txt").replace(".jpg", ".txt").replace(".png", ".txt")
-        label_path = label_path / label_name
-        if not label_path.exists():
+        label_name = name.replace(".jpg", ".txt")
+        label_file_path = label_path / label_name
+        if not label_file_path.exists():
             error_flag = True
             print(f"error: {label_name} not found")
 
@@ -69,6 +69,7 @@ def update_json_paths(json_file_path, output_file_path, path_name):
         if "data" in task and "image" in task["data"]:
             original_path = task["data"]["image"]
             filename = os.path.basename(original_path)
+            filename = filename.rsplit("%5C", 1)[-1]
             task["data"]["image"] = f"/data/local-files/?d={path_name}/{filename}"
 
     with open(output_file_path, 'w', encoding='utf-8') as f:
@@ -87,30 +88,30 @@ def rename_image(img_path, starting_image_index=0):
         starting_image_index: the starting image index, default is 0
     """
     for img in img_path.glob("*.jpg"):
-        new_name = f"image_{starting_image_index:06d}.jpg"
+        new_name = f"Aug4_image_{starting_image_index:06d}.jpg"
         img.rename(img_path / new_name)
         starting_image_index += 1
 
 
 if __name__ == "__main__":
     # example for rename the image name
-    file_path = Path("C:/Users/Qixian/Downloads/project-8-at-2025-08-04-10-26-dcce85b8/labels")
-    split_str = "figures_batch2%5C"
-    rename_file(file_path, split_str)
+    # file_path = Path("C:/Users/Qixian/Downloads/project-8-at-2025-08-04-10-26-dcce85b8/labels")
+    # split_str = "figures_batch2%5C"
+    # rename_file(file_path, split_str)
 
     # example for check the label name
-    img_path = Path("C:/Users/Qixian/Downloads/project-8-at-2025-08-04-10-26-dcce85b8/images")
-    label_path = Path("C:/Users/Qixian/Desktop/lab_tool_data/labels")
+    img_path = Path("C:/Users/Qixian/Desktop/lab_tool_data/All_figures/images/train")
+    label_path = Path("C:/Users/Qixian/Desktop/lab_tool_data/All_figures/labels/train")
     check_label_name(img_path, label_path)
 
-    # example for update the json paths
-    json_path = Path("D:/Python/Projects/tool_labeling/project-8-at-2025-08-03-15-39-0e5d6ccd.json")
-    output_path_json = "D:/Python/Projects/tool_labeling/output_json.json"
-    path_name = "C:/Users/Qixian/Desktop/lab_tool_data/original_figures(927)"
-    update_json_paths(json_path, output_path_json, path_name)
+    # # example for update the json paths
+    # json_path = Path("D:/Python/Projects/tool_labeling/output_file.json")
+    # output_path_json = "D:/Python/Projects/tool_labeling/output_json.json"
+    # path_name = "/home/zhantao/Bio_label/all_images/augmented_figures_batch3"
+    # update_json_paths(json_path, output_path_json, path_name)
 
-    # example for rename the image name
-    img_path = Path("C:/Users/Qixian/Desktop/lab_tool_data/original_figures(927)")
-    rename_image(img_path)
+    # # example for rename the image name
+    # img_path = Path("C:/Users/Qixian/Desktop/lab_tool_data/aug4/img")
+    # rename_image(img_path, starting_image_index=0)
 
 
