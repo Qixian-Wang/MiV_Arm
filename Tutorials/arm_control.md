@@ -20,6 +20,18 @@ ros2 topic echo /miv_arm/joint_states
 ros2 topic hz /miv_arm/joint_states
 
 ros2 topic info /miv_arm/joint_states
+
+ros2 topic info --verbose /miv_arm/joint_states
+```
+
+Visualize node
+```shell
+rqt_graph
 ```
 
 Single joint control:
+```shell
+ros2 topic pub --once /miv_arm/commands/joint_single .....
+```
+
+
