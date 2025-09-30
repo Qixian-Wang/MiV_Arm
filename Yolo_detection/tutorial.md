@@ -16,8 +16,8 @@ There is a link to our own working space, it is not permanent, so if you need it
 
 Click the link, then it will go to our working space directly.
 
-## Step3
-Next please collect some pictures of the items, there are some tips for it.
+## Step3 Image Collection
+There are some tips for collecting images.
 
 1. Make the background varied, but it’s preferable if it resembles a laboratory or biohood environment.
 2. Multiple objects can appear in a single image.
@@ -25,5 +25,19 @@ Next please collect some pictures of the items, there are some tips for it.
 4. Different lighting conditions may be included, as well as reflections.
 5. Try to avoid having a large number of objects concentrated in the corners of the image, as this will make annotation more difficult.
 
+These pictures will be regarded as raw images. Once these images are collected, they should be uploaded to host machine and everyone in the shared working space and see them and label them.
 
-There 
+## Step4 Labeling
+There are some requirements for labeling.
+
+1. Only use upright rectangular boxes to select objects. Do not draw contours or filled shapes (those are for image segmentation), and do not use tilted boxes — the edges must be strictly horizontal or vertical.
+
+2. If the object’s outline is clear, try to draw the bounding box as precisely as possible.
+
+3. Every object in the image needs to be boxed. The principle is: if the annotator can recognize it, it should be annotated.
+
+4. If an object is partially occluded, only box the visible part. Do not imagine or reconstruct its original full shape or size.
+
+Once this step is finished, please let another person do cross-validation.
+
+## Step5 Augmentation
