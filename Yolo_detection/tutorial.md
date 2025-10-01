@@ -41,3 +41,4 @@ There are some requirements for labeling.
 Once this step is finished, please let another person do cross-validation.
 
 ## Step5 Augmentation
+Details about this step will be added later.
