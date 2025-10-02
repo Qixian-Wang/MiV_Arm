@@ -50,9 +50,11 @@ Details about this step will be added later.
 If the address of image must be changed, you should first go to the project, export a JSON (not JSON MIN). Then use function *update_json_paths* in *yolo_utils.py* to modify the address of all images. Then this file contains all correct annotation information.
 
 **Step 2**
+
 Create a new project, use *cloud storage*, and then select *local files* as storage surce. The source address should be the new address of images. But do not syncronize!!
 
 **Step 3**
+
 Then input the following code as labeling interface:
 ```python
 <View>
