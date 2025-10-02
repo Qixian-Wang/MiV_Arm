@@ -25,7 +25,7 @@ There are some tips for collecting images.
 4. Different lighting conditions may be included, as well as reflections.
 5. Try to avoid having a large number of objects concentrated in the corners of the image, as this will make annotation more difficult.
 
-These pictures will be regarded as raw images. Once these images are collected, they should be uploaded to host machine and everyone in the shared working space and see them and label them.
+These pictures will be regarded as raw images. Once these images are collected, please **reduce its size** to no more than 1920 * 1920, if these images are too large, it will reduce refreshing speed. Then they should be uploaded to host machine and everyone in the shared working space and see them and label them.
 
 ## Step4 Labeling
 There are some requirements for labeling.
