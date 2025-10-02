@@ -44,7 +44,7 @@ Once this step is finished, please let another person do cross-validation.
 Details about this step will be added later.
 
 ## PS
-###To move image directory
+### To move image directory
 **Step 1**
 
 If the address of image must be changed, you should first go to the project, export a JSON (not JSON MIN). Then use function *update_json_paths* in *yolo_utils.py* to modify the address of all images. Then this file contains all correct annotation information.
