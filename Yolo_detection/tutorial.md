@@ -42,3 +42,39 @@ Once this step is finished, please let another person do cross-validation.
 
 ## Step5 Augmentation
 Details about this step will be added later.
+
+## PS
+###To move image directory
+**Step 1**
+
+If the address of image must be changed, you should first go to the project, export a JSON (not JSON MIN). Then use function *update_json_paths* in *yolo_utils.py* to modify the address of all images. Then this file contains all correct annotation information.
+
+**Step 2**
+Create a new project, use *cloud storage*, and then select *local files* as storage surce. The source address should be the new address of images. But do not syncronize!!
+
+**Step 3**
+Then input the following code as labeling interface:
+```python
+<View>
+  <Header value="Select a tool and annotate the image"/>
+  <Image name="image" value="$image" rotateControl="false" zoom="true"/>
+
+  <!-- Rectangle -->
+  <RectangleLabels name="rect" toName="image" strokeWidth="2">
+    <Label value="Pipette"             background="#FFA39E"/>
+    <Label value="Petri dish"          background="#FFC069"/>
+    <Label value="Pipette tip holder"  background="#AD8B00"/>
+    <Label value="Tube holder"         background="#D3F261"/>
+    <Label value="Suction tip"         background="#389E0D"/>
+    <Label value="Beaker"              background="#5CDBD3"/>
+    <Label value="MEA"                 background="#096DD9"/>
+    <Label value="Large centri-tube"   background="#ADC6FF"/>
+    <Label value="Middle centri-tube"  background="#9254DE"/>
+    <Label value="Mini centri-tube"    background="#F759AB"/>
+    <Label value="rectangle bottle"    background="#D4380D"/>
+  </RectangleLabels>
+
+</View>
+```
+
+Then improt the modified JSON file, and you will find all figures reappear in the new project.
