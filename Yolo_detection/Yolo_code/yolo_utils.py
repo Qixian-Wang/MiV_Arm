@@ -93,7 +93,7 @@ def rename_image(img_path, starting_image_index=0):
         img.rename(img_path / new_name)
         starting_image_index += 1
 
-def compress_image_quality(input_path, output_path, max_size=2048):
+def resize_image(input_path, output_path, max_size=2048):
     """
     This function is used to resize the images so it will not be too large.
 
@@ -142,7 +142,8 @@ if __name__ == "__main__":
     # Example for resizing images
     # input_image = "/Users/aia/Downloads/pics"
     # output_image = "/Users/aia/Downloads/compressed_pics2"
-    # compress_image_quality(input_image, output_image, max_size=1920)
+    # resize_image(input_image, output_image, max_size=1920)
+
 
 
 
