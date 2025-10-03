@@ -1,6 +1,7 @@
 import os
 
 import json
+from PIL import Image
 from pathlib import Path
 
 
@@ -92,26 +93,56 @@ def rename_image(img_path, starting_image_index=0):
         img.rename(img_path / new_name)
         starting_image_index += 1
 
+def compress_image_quality(input_path, output_path, max_size=2048):
+    """
+    This function is used to resize the images so it will not be too large.
+
+    Parameters
+    ----------
+        input_path: a folder containing raw images
+        output_path: a folder to hold new resized images
+        max_size: max limit for new images
+    """
+    os.makedirs(output_path, exist_ok=True)
+    for image in os.listdir(input_path):
+        with Image.open(os.path.join(input_path, image)) as img:
+            original_size = img.size
+            largest_size_idx = original_size.index(max(original_size))
+
+            if largest_size_idx == 0:
+                img_resized = img.resize(size=(max_size, int(max_size*original_size[1]/original_size[0])))
+            elif largest_size_idx == 1:
+                img_resized = img.resize(size=(int(max_size*original_size[0]/original_size[1]), max_size))
+            else:
+                img_resized = img
+            img_resized.save(os.path.join(output_path, image))
+
 
 if __name__ == "__main__":
-    # example for rename the image name
+    # Example for rename the image name
     # file_path = Path("C:/Users/Qixian/Downloads/project-8-at-2025-08-04-10-26-dcce85b8/labels")
     # split_str = "figures_batch2%5C"
     # rename_file(file_path, split_str)
 
-    # example for check the label name
+    # Example for check the label name
     img_path = Path("C:/Users/Qixian/Desktop/lab_tool_data/All_figures/images/train")
     label_path = Path("C:/Users/Qixian/Desktop/lab_tool_data/All_figures/labels/train")
     check_label_name(img_path, label_path)
 
-    # # example for update the json paths
+    # Example for update the json paths
     # json_path = Path("D:/Python/Projects/tool_labeling/output_file.json")
     # output_path_json = "D:/Python/Projects/tool_labeling/output_json.json"
     # path_name = "/home/zhantao/Bio_label/all_images/augmented_figures_batch3"
     # update_json_paths(json_path, output_path_json, path_name)
 
-    # # example for rename the image name
+    # Example for rename the image name
     # img_path = Path("C:/Users/Qixian/Desktop/lab_tool_data/aug4/img")
     # rename_image(img_path, starting_image_index=0)
+
+    # Example for resizing images
+    # input_image = "/Users/aia/Downloads/pics"
+    # output_image = "/Users/aia/Downloads/compressed_pics2"
+    # compress_image_quality(input_image, output_image, max_size=1920)
+
 
 
